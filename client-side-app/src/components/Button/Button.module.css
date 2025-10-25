@@ -1,0 +1,43 @@
+.button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  min-width: 200px; /* Ensure buttons have a minimum width */
+  text-align: center;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.primary:hover {
+  background-color: #0056b3;
+}
+
+.secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.secondary:hover {
+  background-color: #5a6268;
+}
+
+.submit {
+  background-color: #28a745; /* Green for submit */
+  color: white;
+}
+
+.submit:hover {
+  background-color: #218838;
+}
