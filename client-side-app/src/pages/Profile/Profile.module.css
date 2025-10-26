@@ -1,0 +1,112 @@
+.profileContainer {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.profileDetails {
+  text-align: left;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1.5rem;
+}
+
+.profileDetails p {
+  margin-bottom: 0.8rem;
+  font-size: 1.05rem;
+  color: #444;
+}
+
+.profileDetails strong {
+  color: #222;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.itemsList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2.5rem;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px dotted #eee;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.itemName {
+  flex-grow: 1;
+  text-align: left;
+  font-weight: 500;
+  color: #333;
+}
+
+.itemStatus {
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: white;
+  margin-right: 1rem;
+}
+
+.lost {
+  background-color: #dc3545; /* Red for lost */
+}
+
+.found {
+  background-color: #28a745; /* Green for found */
+}
+
+.viewButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.viewButton:hover {
+  background-color: #0056b3;
+}
+
+.editProfileButton {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1.5rem;
+}
+
+.editProfileButton:hover {
+  background-color: #5a6268;
+}
