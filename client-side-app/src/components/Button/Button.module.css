@@ -6,7 +6,7 @@
   font-weight: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  min-width: 200px; 
+  min-width: 200px;
   text-align: center;
 }
 
@@ -15,29 +15,21 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.primary {
-  background-color: #007bff;
+
+.lost-submit {
+  background-color: #BF092F; 
   color: white;
 }
 
-.primary:hover {
-  background-color: #0056b3;
+.lost-submit:hover {
+  background-color: #a10527;
 }
 
-.secondary {
-  background-color: #6c757d;
+.found-submit {
+  background-color: #06923E; 
   color: white;
 }
 
-.secondary:hover {
-  background-color: #5a6268;
-}
-
-.submit {
-  background-color: #28a745; 
-  color: white;
-}
-
-.submit:hover {
-  background-color: #218838;
+.found-submit:hover {
+  background-color: #047a33;
 }

@@ -1,6 +1,8 @@
 import styles from './Home.module.css';
 import Button from '../../components/Button/Button';
 import { useState } from 'react';
+import LostItemForm from '../LostItemForm/LostItemForm';
+import FoundItemForm from '../FoundItemForm/FoundItemForm';
 
 //define views
 const LOST_VIEW = 'This is lost form';
@@ -18,12 +20,12 @@ const Home = () => {
 
     if(activeForm == LOST_VIEW){
       return(
-        <h1>{LOST_VIEW}</h1>
+        <LostItemForm></LostItemForm>
       )
     }
     if(activeForm == FOUND_VIEW){
       return(
-        <h1>{FOUND_VIEW}</h1>
+        <FoundItemForm></FoundItemForm>
       )
     }
 
@@ -35,10 +37,10 @@ const Home = () => {
       <div className={styles.card}>
         <h2 className={styles.cardTitle}>Report an Item</h2>
         <div className={styles.buttonGroup}>
-          <Button onClick={() => setActiveForm(LOST_VIEW)} variant="primary">
+          <Button onClick={() => setActiveForm(LOST_VIEW)} variant="lost-submit">
             Report for Lost Item
           </Button>
-          <Button onClick={() => setActiveForm(FOUND_VIEW)} variant="secondary">
+          <Button onClick={() => setActiveForm(FOUND_VIEW)} variant="found-submit">
             Report for Found Item
           </Button>
         </div>
