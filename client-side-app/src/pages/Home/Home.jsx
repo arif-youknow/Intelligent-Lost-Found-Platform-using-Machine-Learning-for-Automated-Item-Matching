@@ -1,31 +1,54 @@
-import { Link, useNavigate } from 'react-router-dom';
 import styles from './Home.module.css';
 import Button from '../../components/Button/Button';
+import { useState } from 'react';
+
+//define views
+const LOST_VIEW = 'This is lost form';
+const FOUND_VIEW = 'This is Found form';
 
 
 const Home = () => {
-  const navigate = useNavigate();
+  
+
+  // use state
+  const[activeForm, setActiveForm] = useState(LOST_VIEW);
+
+  //Function
+  const renderForm = ()=>{
+
+    if(activeForm == LOST_VIEW){
+      return(
+        <h1>{LOST_VIEW}</h1>
+      )
+    }
+    if(activeForm == FOUND_VIEW){
+      return(
+        <h1>{FOUND_VIEW}</h1>
+      )
+    }
+
+  }
+
 
   return (
     <div className={styles.homeContainer}>
       <div className={styles.card}>
         <h2 className={styles.cardTitle}>Report an Item</h2>
         <div className={styles.buttonGroup}>
-          <Button onClick={() => navigate('/lost-item')} variant="primary">
-            Apply for Lost Item
+          <Button onClick={() => setActiveForm(LOST_VIEW)} variant="primary">
+            Report for Lost Item
           </Button>
-          <Button onClick={() => navigate('/found-item')} variant="secondary">
-            Apply for Found Item
+          <Button onClick={() => setActiveForm(FOUND_VIEW)} variant="secondary">
+            Report for Found Item
           </Button>
         </div>
       </div>
 
       <div className={styles.infoSection}>
-        <h3>Quick Actions</h3>
-        <ul>
-          <li><Link to="/find-matches" className={styles.infoLink}>Check existing matches</Link></li>
-          <li><Link to="/profile" className={styles.infoLink}>View your profile</Link></li>
-        </ul>
+
+     {/* button er sathe conditional  rendaring hobe. default vabe prothom button button er jonno select hoye thakbe */}
+        {renderForm()}
+
       </div>
     </div>
   );

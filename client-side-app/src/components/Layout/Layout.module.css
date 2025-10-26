@@ -1,17 +1,12 @@
 .container {
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
-  width: 100%; /* Takes full width of #root */
-  box-sizing: border-box; /* Include padding/border in element's total width/height */
-  background-color: #fff; /* White background for the main app frame */
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* For rounded corners */
+  width: 100%; 
+  box-sizing: border-box; 
+  overflow: hidden;
 }
 
 .header {
-  background-color: #007bff; /* Primary blue color */
+  background-color: #007bff;
   color: white;
   padding: 1rem 2rem;
   border-bottom: 1px solid #0056b3;
@@ -24,7 +19,7 @@
 
 .subtitle {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   opacity: 0.9;
 }
 
@@ -41,15 +36,12 @@
 }
 
 .navLink:hover {
-  color: #e2e6ea; /* Lighter on hover */
+  color: #e2e6ea;
 }
 
 .mainContent {
-  flex-grow: 1; /* Allows main content to take available space */
-  padding: 2rem;
-  display: flex;
-  justify-content: center; /* Center content horizontally */
-  align-items: flex-start; /* Align content to the top */
+  padding: 0px 2px;
+
 }
 
 /* Optional footer styles */
