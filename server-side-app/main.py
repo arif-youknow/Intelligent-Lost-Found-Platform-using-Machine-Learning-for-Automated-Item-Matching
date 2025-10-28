@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from app.core.database import Base, engine
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.endpoints import found_items
+from app.api.endpoints import found_items, lost_items
 from fastapi.staticfiles import StaticFiles
 
 
@@ -30,8 +30,11 @@ app.add_middleware(
 
 
 app.include_router(found_items.router, prefix="/api")
+app.include_router(lost_items.router, prefix="/api")
 
 app.mount("/uploads/found", StaticFiles(directory="uploads/found"), name="found_uploads")
+app.mount("/uploads/lost", StaticFiles(directory="uploads/lost"), name="lost_uploads")
+
 
 
 

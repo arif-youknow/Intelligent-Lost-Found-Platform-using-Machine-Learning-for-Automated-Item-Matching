@@ -17,8 +17,8 @@ def create_lost_item(db:Session,item_data: LostItemCreate, image_path: str | Non
     return db_item
 
 #get single item
-def get_found_item(db: Session, item_id: int):
+def get_lost_item(db: Session, item_id: int):
     return db.query(DBLostItem).filter(DBLostItem.id == item_id).first()
 #get multiple item
-def get_found_items(db: Session, skip: int = 0, limit: int = 100):
+def get_lost_items(db: Session, skip: int = 0, limit: int = 100):
     return db.query(DBLostItem).offset(skip).limit(limit).all()

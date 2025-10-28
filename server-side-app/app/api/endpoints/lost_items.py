@@ -1,6 +1,6 @@
 import datetime
-from os import path
-from fastapi import APIRouter, Depends, File, Form, HTTPException, Path, UploadFile
+from fastapi import APIRouter, Depends, File, Form, HTTPException,UploadFile
+from pathlib import Path
 from fastapi.concurrency import run_in_threadpool
 from app.core.database import get_db
 from app.crud import lost_item as crud_lost_item
@@ -8,7 +8,7 @@ from app.schemas.lost_item import LostItem as LostItemScema, LostItemCreate
 from sqlalchemy.orm import Session
 
 
-UPLOAD_DIR_LOST = path("uploads/lost")
+UPLOAD_DIR_LOST = Path("uploads/lost")
 UPLOAD_DIR_LOST.mkdir(exist_ok=True , parents=True)
 
 router = APIRouter(
@@ -42,7 +42,7 @@ async def create_found_item_endpoint(
 
     item_create_data = LostItemCreate(
         item_name=item_name,
-        found_date=parsed_lost_date,
+        lost_date=parsed_lost_date,
         description=description
     )
     db_item = crud_lost_item.create_lost_item(
@@ -54,8 +54,8 @@ async def create_found_item_endpoint(
     return db_item
 
 @router.get("/", response_model=list[LostItemScema])
-def read_found_items_endpoint(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    items = crud_lost_item.get_found_items(db, skip=skip, limit=limit)
+def read_lost_items_endpoint(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    items = crud_lost_item.get_lost_items(db, skip=skip, limit=limit)
     return items
         
     
