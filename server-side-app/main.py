@@ -31,5 +31,7 @@ app.add_middleware(
 
 app.include_router(found_items.router, prefix="/api")
 
-app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+app.mount("/uploads/found", StaticFiles(directory="uploads/found"), name="found_uploads")
+
+
 

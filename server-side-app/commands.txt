@@ -1,8 +1,10 @@
-source venv/bin/activate | source venv/Scripts/activate  (git) --> activate virtual environment
+source venv/bin/activate | source venv/Scripts/activate (git) --> activate virtual environment
 uvicorn main:app --reload  --> start server
 pip freeze > requirements.txt  --> note dependency
 
 after clone from github:
+
+python -m venv venv
 
 * **Linux/macOS:**
     

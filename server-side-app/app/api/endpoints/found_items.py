@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form
-from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 from pathlib import Path
 import datetime
@@ -8,8 +7,8 @@ from app.core.database import get_db
 from app.crud import found_item as crud_found_item
 from app.schemas.found_item import FoundItem as FoundItemSchema, FoundItemCreate
 
-UPLOAD_DIR = Path("uploads")
-UPLOAD_DIR.mkdir(exist_ok=True)
+UPLOAD_DIR_FOUND = Path("uploads/found")
+UPLOAD_DIR_FOUND.mkdir(exist_ok=True , parents=True)
 
 router = APIRouter(
     prefix="/found-items",
@@ -28,21 +27,21 @@ async def create_found_item_endpoint(
     if item_image and item_image.filename:
         file_extension = Path(item_image.filename).suffix
         unique_filename = f"{datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')}{file_extension}"
-        file_location = UPLOAD_DIR / unique_filename
+        file_location = UPLOAD_DIR_FOUND / unique_filename
         file_contents = await item_image.read()
         
         try:
            
             await run_in_threadpool(file_location.write_bytes, file_contents)
             
-            image_path = f"/uploads/{unique_filename}"
+            image_path = f"/uploads/found{unique_filename}"
         except Exception as e:
-            raise HTTPException(status_code=500, detail=f"ফাইল আপলোড করতে সমস্যা হয়েছে: {e}")
+            raise HTTPException(status_code=500, detail=f"Problem uploading file: {e}")
 
     try:
         parsed_found_date = datetime.datetime.strptime(found_date, "%Y-%m-%d")
     except ValueError:
-        raise HTTPException(status_code=400, detail="তারিখের ফরম্যাট ভুল। YYYY-MM-DD ফরম্যাট আশা করা হচ্ছে।")
+        raise HTTPException(status_code=400, detail="Incorrect date format. YYYY-MM-DD format is expected.")
 
     item_create_data = FoundItemCreate(
         item_name=item_name,

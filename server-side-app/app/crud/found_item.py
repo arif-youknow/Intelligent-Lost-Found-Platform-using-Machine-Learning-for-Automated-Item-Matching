@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from app.models.found_item import FoundItem as DBFoundItem
 from app.schemas.found_item import FoundItemCreate
-import datetime
+
 
 def create_found_item(db: Session, item_data: FoundItemCreate, image_path: str | None = None, item_status: str = 'found'):
     db_item = DBFoundItem(
@@ -16,8 +16,9 @@ def create_found_item(db: Session, item_data: FoundItemCreate, image_path: str |
     db.refresh(db_item)
     return db_item
 
+#get single item
 def get_found_item(db: Session, item_id: int):
     return db.query(DBFoundItem).filter(DBFoundItem.id == item_id).first()
-
+#get multiple item
 def get_found_items(db: Session, skip: int = 0, limit: int = 100):
     return db.query(DBFoundItem).offset(skip).limit(limit).all()
