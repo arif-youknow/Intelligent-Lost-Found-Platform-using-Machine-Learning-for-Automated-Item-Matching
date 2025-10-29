@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import styles from './FindMatches.module.css';
 import Button from '../../components/Button/Button';
 
@@ -11,9 +11,9 @@ const FindMatches = () => {
     // Simulate API call
     setTimeout(() => {
       const dummyMatches = [
-        { id: 1, type: 'Lost', itemName: 'Red Wallet', description: 'Left in cafe', matchScore: '90%' },
-        { id: 2, type: 'Found', itemName: 'Keys with a dog tag', description: 'Found near park entrance', matchScore: '85%' },
-        { id: 3, type: 'Lost', itemName: 'iPhone 12', description: 'Lost at bus stop', matchScore: '70%' },
+        { id: 1, type: 'Found', itemName: 'ID card', description: 'UITS cse department er floor e ekta id card pawa gese.', matchScore: '98%' },
+        { id: 2, type: 'Found', itemName: 'id card', description: 'UITS English department theke ekta ID card pawa gese.', matchScore: '85%' },
+    
       ];
       setMatches(dummyMatches);
       setLoading(false);
@@ -25,7 +25,7 @@ const FindMatches = () => {
       <h2 className={styles.title}>Find Your Matches</h2>
       <div className={styles.actions}>
         <Button onClick={handleRefresh} disabled={loading} variant="primary">
-          {loading ? 'Refreshing...' : 'Refresh'}
+          {loading ? <p className={styles.refreshBtn}>Refreshing...</p> : <p className={styles.refreshBtn}>Refresh</p>}
         </Button>
       </div>
 

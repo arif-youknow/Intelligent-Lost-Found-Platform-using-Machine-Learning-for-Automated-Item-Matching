@@ -1,41 +1,40 @@
 .matchesContainer {
   background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 1px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  padding: 2.5rem;
+  padding: 20px;
   width: 100%;
-  max-width: 800px; /* Wider for displaying matches */
+  max-width: 800px;
   margin: 0 auto;
   text-align: center;
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 20px;
   color: #333;
-  margin-bottom: 2rem;
+  margin-bottom: 10px;
 }
 
 .actions {
-  margin-bottom: 2rem;
+  margin-bottom: 15px;
 }
 
 .noMatches {
   color: #666;
   font-style: italic;
-  margin-top: 2rem;
+  margin-top: 15px;
 }
 
 .matchesList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-  gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
 }
 
 .matchCard {
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 1px;
   padding: 1.5rem;
   text-align: left;
   background-color: #fcfcfc;
@@ -43,10 +42,10 @@
 }
 
 .matchItemName {
-  font-size: 1.3rem;
-  color: #007bff;
+  font-size: 18px;
+  color: black;
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 5px;
 }
 
 .matchDescription {
@@ -65,4 +64,15 @@
   width: 100%;
   padding: 0.6rem 1rem;
   font-size: 0.9rem;
+  background-color: #03989b;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.viewDetailsButton:hover{
+ background-color: #144552;
+ transform: translateY(-2px);
+ box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.refreshBtn {
+  font-size: 16px;
 }

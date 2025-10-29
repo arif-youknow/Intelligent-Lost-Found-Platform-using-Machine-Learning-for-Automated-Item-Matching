@@ -1,17 +1,16 @@
 .profileContainer {
   background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 1px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  padding: 2.5rem;
+  padding: 20px;
   width: 100%;
-  max-width: 700px;
+  max-width: 800px;
   margin: 0 auto;
   text-align: center;
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 22px;
   color: #333;
   margin-bottom: 2rem;
 }
@@ -34,7 +33,7 @@
 }
 
 .sectionTitle {
-  font-size: 1.5rem;
+  font-size: 22px;
   color: #333;
   margin-bottom: 1.5rem;
 }
@@ -65,20 +64,19 @@
 }
 
 .itemStatus {
-  padding: 0.3rem 0.7rem;
-  border-radius: 4px;
+  padding: 0.35rem 0.7rem;
+  border-radius: 1px;
   font-size: 0.85rem;
-  font-weight: bold;
   color: white;
-  margin-right: 1rem;
+  margin-right: 5px;
 }
 
 .lost {
-  background-color: #dc3545; /* Red for lost */
+  background-color: #dc3545; 
 }
 
 .found {
-  background-color: #28a745; /* Green for found */
+  background-color: #28a745; 
 }
 
 .viewButton {
@@ -86,7 +84,7 @@
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 5px;
+  border-radius: 1px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -96,11 +94,11 @@
 }
 
 .editProfileButton {
-  background-color: #6c757d;
+  background-color: #006466;
   color: white;
   border: none;
   padding: 0.8rem 2rem;
-  border-radius: 5px;
+  border-radius: 1px;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -108,5 +106,5 @@
 }
 
 .editProfileButton:hover {
-  background-color: #5a6268;
+  background-color: #028e91;
 }

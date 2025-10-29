@@ -1,14 +1,13 @@
-import React from 'react';
 import styles from './Profile.module.css';
 
 const Profile = () => {
   // In a real app, this would fetch user data
   const userData = {
-    name: "John Doe",
-    email: "john.doe@example.com",
+    name: "Shakira Raisa",
+    email: "raisauits@gmail.com",
     registeredItems: [
-      { id: 'L001', name: 'Blue Backpack', status: 'Lost' },
-      { id: 'F001', name: 'Silver Watch', status: 'Found' },
+      { id: 'L001', name: 'ID Card', status: 'Lost' },
+      
     ],
   };
 
