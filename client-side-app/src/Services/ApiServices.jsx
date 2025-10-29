@@ -21,6 +21,24 @@ const apiService = {
     }
   },
 
+  submitLostItem: async (formData) =>{
+
+    try {
+
+      const response = await fetch(`${API_BASE_URL}/lost-items/`, {
+          method: 'POST',
+          body: formData,
+      });
+       if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Error from server');
+      }
+       return await response.json();
+    } catch (error) {
+      console.error('API error', error);
+      throw error;
+    }
+  }
   //add more services like submitFoundItem
   
 };

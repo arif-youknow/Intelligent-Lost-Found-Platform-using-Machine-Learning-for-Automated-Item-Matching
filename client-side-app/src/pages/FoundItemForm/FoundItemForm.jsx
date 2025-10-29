@@ -82,7 +82,6 @@ const FoundItemForm = () => {
                 <InputField
                     label="Found Date" 
                     id="found_date"
-                    
                     name="found_date" 
                     type="date"
                     value={formData.found_date}
@@ -102,8 +101,7 @@ const FoundItemForm = () => {
                 />
                 <InputField
                     label="Upload Item Image"
-                    id="item_image"
-                    
+                    id="item_image"  
                     name="item_image" 
                     type="file"
                     onChange={handleChange}

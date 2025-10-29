@@ -2,13 +2,17 @@ import { useState } from 'react';
 import styles from './LostItemForm.module.css';
 import InputField from '../../components/InputField/InputField';
 import Button from '../../components/Button/Button';
+import apiService from '../../Services/ApiServices';
 
 const LostItemForm = () => {
+
   const [formData, setFormData] = useState({
-    itemName: '',
-    lostDate: '',
-    description: '',
-    itemImage: null,
+
+        item_name: '', 
+        lost_date: '', 
+        description: '',     
+        item_image: null, 
+        itemStatus: 'lost'
   });
 
   const handleChange = (e) => {
@@ -18,11 +22,45 @@ const LostItemForm = () => {
       [name]: type === 'file' ? files[0] : value,
     }));
   };
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Lost Item Data:', formData);
-    alert('Lost item submitted! (Check console for data)');
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+    const dataToSubmit = new FormData();
+    for (const key in formData) {
+            if (formData[key] !== null) {
+                dataToSubmit.append(key, formData[key]);
+            }
+        }
+        try {
+           
+            const result = await apiService.submitLostItem(dataToSubmit);
+            console.log('Server Response:', result);
+            setSuccess(true);
+            
+          
+            setFormData({
+                item_name: '',
+                lost_date: '', 
+                description: '',
+                item_image: null, 
+                itemStatus: 'lost'
+            });
+
+        } catch (err) {
+            console.error('Error while submitting the form', err);
+            
+            setError(err.message || 'Error submitting the form');
+        } finally {
+            setLoading(false);
+        }
+    
     
   };
 
@@ -32,19 +70,19 @@ const LostItemForm = () => {
       <form onSubmit={handleSubmit} className={styles.form}>
         <InputField
           label="Item Name"
-          id="itemName"
-          name="itemName"
-          value={formData.itemName}
+          id="item_name"
+          name="item_name"
+          value={formData.item_name}
           onChange={handleChange}
           placeholder="e.g. Blue backpack"
           required
         />
         <InputField
           label="Lost Date"
-          id="lostDate"
-          name="lostDate"
+          id="lost_date"
+          name="lost_date"
           type="date"
-          value={formData.lostDate}
+          value={formData.lost_date}
           onChange={handleChange}
           required
         />
@@ -61,16 +99,18 @@ const LostItemForm = () => {
         />
         <InputField
           label="Upload Item Image"
-          id="itemImage"
-          name="itemImage"
+          id="item_image"
+          name="item_image"
           type="file"
           onChange={handleChange}
           accept="image/*"
     
         />
-        <Button type="submit" variant="lost-submit">
-          Submit Lost Item
+        <Button type="submit" variant="lost-submit" disabled={loading}>
+          {loading ? 'Please wait..' : 'Submit Lost Item'}
         </Button>
+        {error && <p style={{ color: 'red' }}>Error: {error}</p>}
+        {success && <p style={{ color: 'green' }}>Submitted Successfully!</p>}
       </form>
     </div>
   );

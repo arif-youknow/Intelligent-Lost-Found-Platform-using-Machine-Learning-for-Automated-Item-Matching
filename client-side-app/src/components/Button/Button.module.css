@@ -17,19 +17,19 @@
 
 
 .lost-submit {
-  background-color: #BF092F; 
+  background-color: #41406b;
   color: white;
 }
 
 .lost-submit:hover {
-  background-color: #a10527;
+  background-color: #272640;
 }
 
 .found-submit {
-  background-color: #06923E; 
+  background-color:  #03989b;
   color: white;
 }
 
 .found-submit:hover {
-  background-color: #047a33;
+  background-color: #006466;
 }
