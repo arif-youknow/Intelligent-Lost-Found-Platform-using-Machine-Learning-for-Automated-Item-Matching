@@ -6,7 +6,7 @@ from app.schemas.lost_item import LostItemCreate
 def create_lost_item(db:Session,item_data: LostItemCreate, image_path: str | None = None, item_status: str = 'lost' ):
     db_item = DBLostItem(
         item_name=item_data.item_name,
-        found_date=item_data.lost_date,
+        lost_date=item_data.lost_date,
         description=item_data.description,
         item_image=image_path,
         item_status=item_status.lower()
