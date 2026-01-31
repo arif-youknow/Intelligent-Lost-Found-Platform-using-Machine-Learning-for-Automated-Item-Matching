@@ -4,7 +4,7 @@ Search Route - Find matches using ML model
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.core.database import get_db
-from app.models.database import Item, Match, ItemType
+from app.models.database_models import Item, Match, ItemType
 from app.services.ml_service import ml_service
 from app.services.feature_extractor import feature_extractor
 from app.services.image_processor import load_clean_image

@@ -2,12 +2,14 @@
 Image Processor - Handle image upload, background removal, and preprocessing
 """
 from PIL import Image
+from app.config import settings
 from rembg import remove, new_session
 from fastapi import UploadFile, HTTPException
 import os
 import uuid
 from pathlib import Path
-from typing import Optional
+from typing import Optional, cast
+import io  
 
 # Initialize rembg session (GPU if available)
 try:
@@ -15,29 +17,29 @@ try:
 except:
     rembg_session = new_session()
 
+
+
 # Constants
-UPLOAD_DIR = Path("static/uploads")
+upload_path_str = cast(str, settings.UPLOAD_DIR)
+UPLOAD_DIR = Path(upload_path_str)
 MAX_FILE_SIZE_MB = 10
 ALLOWED_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.webp'}
 IMAGE_SIZE = (448, 448)
 
+
+
+
+
 async def process_and_save_image(
     file: UploadFile,
-    item_type: str,  # 'lost' or 'found'
+    item_type: str, 
     tracking_token: str
 ) -> str:
-    """
-    Process uploaded image:
-    1. Validate file
-    2. Remove background
-    3. Resize to standard size
-    4. Save to disk
     
-    Returns:
-        Relative path to saved image
-    """
     # Validate file extension
-    file_ext = Path(file.filename).suffix.lower()
+    safe_filename = file.filename if file.filename else "unknown.jpg"
+    file_ext = Path(safe_filename).suffix.lower()
+    
     if file_ext not in ALLOWED_EXTENSIONS:
         raise HTTPException(
             status_code=400,
@@ -55,21 +57,34 @@ async def process_and_save_image(
             detail=f"File too large. Max size: {MAX_FILE_SIZE_MB}MB"
         )
     
+    
+    
     try:
         # Open image
         img = Image.open(io.BytesIO(contents))
         
-        # Convert to RGB
-        img = img.convert("RGB")
-        
-        # Resize before background removal (faster processing)
-        img = img.resize(IMAGE_SIZE, Image.Resampling.LANCZOS)
         
         # Remove background
-        img_no_bg = remove(img, session=rembg_session)
+        img_no_bg_raw = remove(img, session=rembg_session)
+           
         
-        # Convert back to RGB (rembg returns RGBA)
-        img_final = img_no_bg.convert("RGB")
+        if not isinstance(img_no_bg_raw, Image.Image):
+            
+            img_no_bg = Image.open(io.BytesIO(img_no_bg_raw)).convert("RGBA")
+        else:
+            img_no_bg = img_no_bg_raw
+            
+        
+        img_final = Image.new("RGB", img_no_bg.size, (255, 255, 255))
+        
+        if img_no_bg.mode == 'RGBA':
+            img_final.paste(img_no_bg, mask=img_no_bg.split()[3])
+        else:
+            img_final.paste(img_no_bg)
+        
+        # Resize
+        img_final = img_final.resize(IMAGE_SIZE, Image.Resampling.LANCZOS)
+        
         
         # Generate filename
         filename = f"{tracking_token}_{uuid.uuid4().hex[:8]}{file_ext}"
@@ -108,7 +123,7 @@ def load_clean_image(image_path: str) -> Optional[Image.Image]:
         full_path = Path("static") / image_path
         
         if not full_path.exists():
-            print(f"⚠️ Image not found: {full_path}")
+            print(f"Image not found: {full_path}")
             return None
         
         img = Image.open(full_path).convert("RGB")
@@ -120,8 +135,7 @@ def load_clean_image(image_path: str) -> Optional[Image.Image]:
         return img
     
     except Exception as e:
-        print(f"⚠️ Failed to load image {image_path}: {e}")
+        print(f"Failed to load image {image_path}: {e}")
         return None
 
 
-import io  # Add this import at the top

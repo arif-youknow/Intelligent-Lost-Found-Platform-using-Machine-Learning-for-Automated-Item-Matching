@@ -12,7 +12,7 @@ load_dotenv()
 # Database URL from environment
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "mysql+pymysql://root:password@localhost:3306/lost_found_db"
+    "mysql+mysqlconnector://root:password@localhost:3306/lost_found_db"
 )
 
 # Create engine

@@ -1,5 +1,5 @@
 import os
-from anyio import Path
+from pathlib import Path
 from dotenv import load_dotenv
 
 
@@ -11,11 +11,12 @@ class Settings:
     PROJECT_VERSION: str = "1.0.0"
 
     # Database
-    DATABASE_URL: str = os.getenv("DATABASE_URL")
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "mysql+mysqlconnector://root:password@localhost:3306/lost_found_db")
     
     # Paths
     UPLOAD_DIR: str = os.getenv("UPLOAD_DIR", "./static/uploads")
     MODEL_DIR: str = os.getenv("MODEL_DIR", "./ml_models")
+
     
     # Device setup
     DEVICE: str = os.getenv("DEVICE", "cpu")

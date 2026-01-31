@@ -1,12 +1,16 @@
 import os
+from app.config import settings
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-
 from app.api.routes import search, tracking, upload
 
 
-app = FastAPI()
+app = FastAPI(
+    title="Lost & Found System API",
+    description="AI-powered Lost & Found matching system",
+    version="1.0.0"
+)
 
 
 app.add_middleware(
@@ -17,8 +21,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-os.makedirs("static/uploads/lost", exist_ok=True)
-os.makedirs("static/uploads/found", exist_ok=True)
+UPLOAD_LOST = os.path.join(settings.UPLOAD_DIR, "lost")
+UPLOAD_FOUND = os.path.join(settings.UPLOAD_DIR, "found")
+
+
+os.makedirs(UPLOAD_LOST, exist_ok=True)
+os.makedirs(UPLOAD_FOUND, exist_ok=True)
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 

@@ -4,7 +4,7 @@ Tracking Route - Track items using tracking token
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.core.database import get_db
-from app.models.database import Item
+from app.models.database_models import Item
 from app.core.security import validate_tracking_token
 
 router = APIRouter()

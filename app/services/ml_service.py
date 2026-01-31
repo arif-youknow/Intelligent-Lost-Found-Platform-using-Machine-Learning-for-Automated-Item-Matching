@@ -29,25 +29,25 @@ class MLService:
             # Load XGBoost model
             model_path = self.model_dir / "xgboost_model.pkl"
             self.model = joblib.load(model_path)
-            print(f"✅ Model loaded from {model_path}")
+            print(f"Model loaded from {model_path}")
             
             # Load threshold
             threshold_path = self.model_dir / "best_threshold.txt"
             if threshold_path.exists():
                 self.threshold = float(threshold_path.read_text().strip())
-                print(f"✅ Threshold loaded: {self.threshold:.4f}")
+                print(f"Threshold loaded: {self.threshold:.4f}")
             
             # Load metadata
             metadata_path = self.model_dir / "model_metadata.json"
             if metadata_path.exists():
                 with open(metadata_path) as f:
                     self.metadata = json.load(f)
-                print(f"✅ Model metadata loaded")
+                print(f"Model metadata loaded")
                 print(f"   Training date: {self.metadata.get('training_date')}")
                 print(f"   Test accuracy: {self.metadata.get('test_accuracy', 0)*100:.2f}%")
             
         except Exception as e:
-            print(f"❌ Error loading model: {e}")
+            print(f"Error loading model: {e}")
             raise
     
     def predict(self, features: np.ndarray) -> Tuple[int, float]:
