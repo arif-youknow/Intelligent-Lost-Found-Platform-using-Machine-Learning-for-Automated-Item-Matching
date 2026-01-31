@@ -1,6 +1,1 @@
-echo "venv/
-.venv/
-env/
-__pycache__/
-*.pkl
-.env" > .gitignore
+.env
