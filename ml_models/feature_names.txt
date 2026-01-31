@@ -1,0 +1,5 @@
+dino_similarity
+sift_similarity
+text_similarity
+item_name_similarity
+color_match

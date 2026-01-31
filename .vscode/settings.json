@@ -1,0 +1,15 @@
+{
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.indexing": true,
+    "python.analysis.packageIndexDepths": [
+        {
+            "name": "fastapi",
+            "depth": 5
+        },
+        {
+            "name": "pydantic",
+            "depth": 5
+        }
+    ],
+    "python.analysis.typeCheckingMode": "basic"
+}

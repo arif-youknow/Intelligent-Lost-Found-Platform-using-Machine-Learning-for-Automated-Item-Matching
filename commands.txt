@@ -1,0 +1,22 @@
+source venv/bin/activate | source venv/Scripts/activate (git) --> activate virtual environment
+uvicorn main:app --reload  --> start server
+pip freeze > requirements.txt  --> note dependency
+
+after clone from github:
+
+python -m venv venv
+
+* **Linux/macOS:**
+    
+    source venv/bin/activate
+
+* **Windows (Command Prompt):**
+   
+    venv\Scripts\activate.bat
+    
+* **Windows (PowerShell):**
+   
+    venv\Scripts\Activate.ps1
+    
+pip install -r requirements.txt
+   
