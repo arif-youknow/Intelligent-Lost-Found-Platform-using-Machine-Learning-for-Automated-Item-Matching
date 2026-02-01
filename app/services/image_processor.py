@@ -5,7 +5,6 @@ from PIL import Image
 from app.config import settings
 from rembg import remove, new_session
 from fastapi import UploadFile, HTTPException
-import os
 import uuid
 from pathlib import Path
 from typing import Optional, cast

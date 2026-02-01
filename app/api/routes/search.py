@@ -16,7 +16,7 @@ router = APIRouter()
 @router.get("/search/{tracking_token}")
 async def search_matches(
     tracking_token: str,
-    top_k: int = 5,
+    top_k: int = 2,
     db: Session = Depends(get_db)
 ):
     """

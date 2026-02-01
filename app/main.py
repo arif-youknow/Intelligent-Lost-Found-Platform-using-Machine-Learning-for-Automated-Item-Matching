@@ -5,6 +5,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from app.api.routes import search, tracking, upload
 
+from app.core.database import engine, Base 
+
+
+
+Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI(
     title="Lost & Found System API",

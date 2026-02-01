@@ -27,7 +27,9 @@ class FeatureExtractor:
         # SIFT for traditional CV features
         self.sift = cv2.SIFT_create()
         
-        print("✅ Feature extractor ready!")
+       
+       
+       
     
     def extract_dino_features(self, img1: Image.Image, img2: Image.Image) -> float:
         """
@@ -51,7 +53,7 @@ class FeatureExtractor:
             return float(similarity.cpu().numpy()[0])
         
         except Exception as e:
-            print(f"⚠️ DINOv2 extraction error: {e}")
+            print(f"DINOv2 extraction error: {e}")
             return 0.5  # Default neutral score
     
     def extract_sift_features(self, img1: Image.Image, img2: Image.Image) -> float:
